@@ -8,6 +8,7 @@ from frontend.sidebar import navigation
 from frontend.dashboard import show_dashboard
 from frontend.theme import apply_theme
 from frontend.feature_engineering import feature_engineering_page
+from frontend.machine_learning import machine_learning_page
 
 # ==========================================
 # Backend Imports
@@ -197,8 +198,7 @@ else:
     # Machine Learning
     # ======================================
     elif page == "⚙️ Machine Learning":
-
-        st.info("🚧 Machine Learning Studio Coming Soon")
+        machine_learning_page()
 
     # ======================================
     # Reports
