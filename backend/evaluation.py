@@ -1,3 +1,4 @@
+import pandas as pd
 import matplotlib.pyplot as plt
 
 from sklearn.metrics import (
@@ -7,11 +8,18 @@ from sklearn.metrics import (
 )
 
 
+# =====================================================
+# Confusion Matrix
+# =====================================================
+
 def plot_confusion_matrix(model, X_test, y_test):
 
     predictions = model.predict(X_test)
 
-    cm = confusion_matrix(y_test, predictions)
+    cm = confusion_matrix(
+        y_test,
+        predictions
+    )
 
     fig, ax = plt.subplots(figsize=(6, 6))
 
@@ -19,10 +27,19 @@ def plot_confusion_matrix(model, X_test, y_test):
         confusion_matrix=cm
     )
 
-    disp.plot(ax=ax)
+    disp.plot(
+        ax=ax,
+        colorbar=False
+    )
+
+    plt.tight_layout()
 
     return fig
 
+
+# =====================================================
+# Classification Report
+# =====================================================
 
 def get_classification_report(
     model,
@@ -39,3 +56,36 @@ def get_classification_report(
     )
 
     return report
+
+
+# =====================================================
+# Feature Importance
+# =====================================================
+
+def get_feature_importance(
+    model,
+    feature_names
+):
+
+    if not hasattr(model, "feature_importances_"):
+        return None
+
+    importance = pd.DataFrame({
+
+        "Feature": feature_names,
+
+        "Importance": model.feature_importances_
+
+    })
+
+    importance = importance.sort_values(
+        by="Importance",
+        ascending=False
+    )
+
+    importance.reset_index(
+        drop=True,
+        inplace=True
+    )
+
+    return importance

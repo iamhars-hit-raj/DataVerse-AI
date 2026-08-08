@@ -1,14 +1,17 @@
 import streamlit as st
 import pandas as pd
 
+from backend.auto_fix import auto_fix_dataset
+
 
 def data_cleaning(df):
 
     st.subheader("🧹 Data Cleaning")
 
-    # ------------------------------------
+    # ====================================
     # Duplicate Rows
-    # ------------------------------------
+    # ====================================
+
     duplicate_count = df.duplicated().sum()
 
     st.info(f"Duplicate Rows Found: {duplicate_count}")
@@ -21,13 +24,18 @@ def data_cleaning(df):
 
         removed = original_rows - len(df)
 
-        st.success(f"Successfully removed {removed} duplicate rows.")
+        st.session_state.df = df
+
+        st.success(
+            f"Successfully removed {removed} duplicate rows."
+        )
 
     st.divider()
 
-    # ------------------------------------
+    # ====================================
     # Missing Values
-    # ------------------------------------
+    # ====================================
+
     st.subheader("❌ Handle Missing Values")
 
     missing = df.isnull().sum()
@@ -71,31 +79,102 @@ def data_cleaning(df):
             numeric = df.select_dtypes(include="number").columns
 
             for col in numeric:
-                df[col] = df[col].fillna(df[col].mean())
 
-            st.success("Filled numeric missing values using Mean.")
+                df[col] = df[col].fillna(
+                    df[col].mean()
+                )
+
+            st.success(
+                "Filled numeric missing values using Mean."
+            )
 
         elif method == "Fill Median":
 
             numeric = df.select_dtypes(include="number").columns
 
             for col in numeric:
-                df[col] = df[col].fillna(df[col].median())
 
-            st.success("Filled numeric missing values using Median.")
+                df[col] = df[col].fillna(
+                    df[col].median()
+                )
+
+            st.success(
+                "Filled numeric missing values using Median."
+            )
 
         elif method == "Fill Mode":
 
             for col in df.columns:
+
                 mode = df[col].mode()
 
                 if not mode.empty:
-                    df[col] = df[col].fillna(mode[0])
 
-            st.success("Filled missing values using Mode.")
+                    df[col] = df[col].fillna(
+                        mode.iloc[0]
+                    )
+
+            st.success(
+                "Filled missing values using Mode."
+            )
 
         else:
 
-            st.info("No changes applied.")
+            st.info(
+                "No changes applied."
+            )
+
+        st.session_state.df = df
+
+    st.divider()
+
+    # ====================================
+    # AI Auto Fix
+    # ====================================
+
+    st.subheader("✨ AI Auto Fix")
+
+    st.caption(
+        "Automatically clean the dataset using intelligent preprocessing."
+    )
+
+    if st.button(
+        "🚀 Auto Fix Dataset",
+        use_container_width=True
+    ):
+
+        with st.spinner(
+            "Applying AI fixes..."
+        ):
+
+            cleaned_df, logs = auto_fix_dataset(df)
+
+            df = cleaned_df
+
+            st.session_state.df = df
+
+        st.success(
+            "✅ Dataset cleaned successfully!"
+        )
+
+        st.subheader("📝 Changes Applied")
+
+        if logs:
+
+            for item in logs:
+
+                st.write("✅", item)
+
+        else:
+
+            st.info(
+                "No changes were required."
+            )
+
+        st.dataframe(
+            df.head(),
+            use_container_width=True,
+            hide_index=True
+        )
 
     return df

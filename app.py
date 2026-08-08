@@ -9,6 +9,11 @@ from frontend.dashboard import show_dashboard
 from frontend.theme import apply_theme
 from frontend.feature_engineering import feature_engineering_page
 from frontend.machine_learning import machine_learning_page
+from frontend.ai_analyst import ai_analyst_page
+from frontend.dashboard_ai import ai_dashboard_page
+from frontend.reports import reports_page
+from frontend.ai_dashboard import ai_dashboard_page
+from frontend.copilot import copilot_page
 
 # ==========================================
 # Backend Imports
@@ -199,10 +204,19 @@ else:
     # ======================================
     elif page == "⚙️ Machine Learning":
         machine_learning_page()
+    elif page == "📊 AI Dashboard":
 
+        ai_dashboard_page(df)
     # ======================================
     # Reports
     # ======================================
     elif page == "📄 Reports":
 
-        st.info("🚧 Automated Reports Coming Soon")
+        reports_page(df)
+    elif page == "🤖 AI Analyst":
+
+        ai_analyst_page(df)
+    elif page == "📈 AI Dashboard":
+        ai_dashboard_page(df)
+    elif page == "🧠 AI Copilot":
+        copilot_page(df)

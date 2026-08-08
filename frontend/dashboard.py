@@ -2,9 +2,7 @@ import streamlit as st
 
 from frontend.hero import hero_section
 from frontend.cards import metric_card
-from frontend.health import show_health
-from backend.health import dataset_health
-
+from frontend.data_health import show_health_score
 
 def show_dashboard(df=None, filename=None):
     """
@@ -73,10 +71,8 @@ def show_dashboard(df=None, filename=None):
     # =====================================================
     # Dataset Health
     # =====================================================
-    health = dataset_health(df)
 
-    show_health(health)
-
+    show_health_score(df)
     st.divider()
 
     # =====================================================
