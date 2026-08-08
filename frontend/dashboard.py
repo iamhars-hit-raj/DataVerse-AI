@@ -118,29 +118,54 @@ def show_dashboard(df=None, filename=None):
 
     st.progress(0.35)
 
-    st.markdown("""
-### ✅ Completed
+    st.markdown("## 🚀 Development Roadmap")
 
-- Dataset Upload
-- Session State Management
-- Dataset Overview
-- Data Cleaning
-- Exploratory Data Analysis
-- Dashboard
-- KPI Cards
-- Dataset Health Score
+progress = 60
+st.progress(progress)
 
-### 🚧 In Progress
+st.markdown("### ✅ Completed")
 
-- Dashboard Charts
-- Feature Engineering
+completed = [
+    "Dataset Upload",
+    "Session State Management",
+    "Dataset Overview",
+    "Data Cleaning",
+    "Exploratory Data Analysis",
+    "Dashboard",
+    "KPI Cards",
+    "Dataset Health Score",
+    "Dashboard Charts",
+    "Feature Engineering",
+    "Machine Learning Studio",
+    "AI Analyst",
+    "AI Dashboard",
+    "AI Copilot",
+    "Reports",
+]
 
-### 🔜 Coming Soon
+for item in completed:
+    st.markdown(f"- {item}")
 
-- Machine Learning Studio
-- AutoML
-- Explainable AI (SHAP)
-- AI Dataset Assistant
-- Report Generation
-- Model Deployment
-""")
+st.markdown("### 🚧 In Progress")
+
+in_progress = [
+    "Advanced Machine Learning",
+    "Advanced Model Evaluation",
+    "AutoML",
+    "Explainable AI (SHAP)",
+]
+
+for item in in_progress:
+    st.markdown(f"- {item}")
+
+st.markdown("### 🔜 Coming Soon")
+
+coming_soon = [
+    "AI Dataset Assistant",
+    "Automated Data Storytelling",
+    "Model Deployment / Prediction API",
+    "Advanced Feature Selection",
+]
+
+for item in coming_soon:
+    st.markdown(f"- {item}")
