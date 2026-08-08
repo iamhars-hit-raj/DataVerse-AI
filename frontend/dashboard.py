@@ -120,52 +120,52 @@ def show_dashboard(df=None, filename=None):
 
     st.markdown("## 🚀 Development Roadmap")
 
-progress = 60
-st.progress(progress)
+    progress = 60
+    st.progress(progress)
 
-st.markdown("### ✅ Completed")
+    st.markdown("### ✅ Completed")
 
-completed = [
-    "Dataset Upload",
-    "Session State Management",
-    "Dataset Overview",
-    "Data Cleaning",
-    "Exploratory Data Analysis",
-    "Dashboard",
-    "KPI Cards",
-    "Dataset Health Score",
-    "Dashboard Charts",
-    "Feature Engineering",
-    "Machine Learning Studio",
-    "AI Analyst",
-    "AI Dashboard",
-    "AI Copilot",
-    "Reports",
-]
+    completed = [
+        "Dataset Upload",
+        "Session State Management",
+        "Dataset Overview",
+        "Data Cleaning",
+        "Exploratory Data Analysis",
+        "Dashboard",
+        "KPI Cards",
+        "Dataset Health Score",
+        "Dashboard Charts",
+        "Feature Engineering",
+        "Machine Learning Studio",
+        "AI Analyst",
+        "AI Dashboard",
+        "AI Copilot",
+        "Reports",
+    ]
 
-for item in completed:
-    st.markdown(f"- {item}")
+    for item in completed:
+        st.markdown(f"- {item}")
 
-st.markdown("### 🚧 In Progress")
+    st.markdown("### 🚧 In Progress")
 
-in_progress = [
-    "Advanced Machine Learning",
-    "Advanced Model Evaluation",
-    "AutoML",
-    "Explainable AI (SHAP)",
-]
+    in_progress = [
+        "Advanced Machine Learning",
+        "Advanced Model Evaluation",
+        "AutoML",
+        "Explainable AI (SHAP)",
+    ]
 
-for item in in_progress:
-    st.markdown(f"- {item}")
+    for item in in_progress:
+        st.markdown(f"- {item}")
 
-st.markdown("### 🔜 Coming Soon")
+    st.markdown("### 🔜 Coming Soon")
 
-coming_soon = [
-    "AI Dataset Assistant",
-    "Automated Data Storytelling",
-    "Model Deployment / Prediction API",
-    "Advanced Feature Selection",
-]
+    coming_soon = [
+        "AI Dataset Assistant",
+        "Automated Data Storytelling",
+        "Model Deployment / Prediction API",
+        "Advanced Feature Selection",
+    ]
 
-for item in coming_soon:
-    st.markdown(f"- {item}")
+    for item in coming_soon:
+        st.markdown(f"- {item}")
